@@ -1,0 +1,38 @@
+.dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-live);
+  box-shadow: 0 0 0 0 var(--color-live-glow);
+  animation: live-pulse 1.6s ease-out infinite;
+}
+
+.stale {
+  background: var(--color-live-stale);
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-live-glow);
+  }
+  70% {
+    box-shadow: 0 0 0 8px var(--color-live-glow-0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 var(--color-live-glow-0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    box-shadow: 0 0 6px 2px var(--color-live-glow-static);
+  }
+  .stale {
+    box-shadow: none;
+  }
+}

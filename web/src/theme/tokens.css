@@ -1,0 +1,35 @@
+/* Colour tokens from SPEC §8. Components use these, never raw hex values. */
+:root {
+  --color-cream-50: #fbf8f1;
+  --color-cream-100: #f4efe3;
+  --color-cream-300: #e4dcc8;
+  --color-green-900: #163b2a;
+  --color-green-700: #24573f;
+  /* 3.8:1 on cream: accents, borders and icons only, not body-size text. */
+  --color-green-500: #3e8e5e;
+  --color-green-200: #cfe6d6;
+  --color-live: #3ddc84;
+  --color-live-glow: rgba(61, 220, 132, 0.7);
+  --color-live-glow-0: rgba(61, 220, 132, 0);
+  --color-live-glow-static: rgba(61, 220, 132, 0.6);
+  /* LiveDot while offline: the score may be stale. */
+  --color-live-stale: #a3ada6;
+  --color-text: #1f2a24;
+  /* SPEC value #6b7a70 is 3.9:1 on cream-100; darkened to meet WCAG AA (4.9:1). */
+  --color-muted: #5c6b61;
+  --color-danger: #b5483b;
+
+  --sidebar-width: 240px;
+  --font-size-base: 15px;
+}
+
+html {
+  font-size: var(--font-size-base);
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream-50);
+  color: var(--color-text);
+  font-family: 'Inter', system-ui, sans-serif;
+}

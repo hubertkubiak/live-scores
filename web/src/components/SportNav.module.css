@@ -1,0 +1,103 @@
+.nav {
+  padding: 16px 12px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-cream-50);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: color-mix(in srgb, var(--color-green-700) 60%, transparent);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--color-live);
+  outline-offset: 2px;
+}
+
+.item[aria-current='page'] {
+  background: var(--color-green-700);
+  font-weight: 600;
+}
+
+.label {
+  flex: 1;
+}
+
+.count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-live);
+}
+
+.countNone {
+  composes: count;
+  color: var(--color-cream-300);
+  font-weight: 400;
+}
+
+/* Below 1024 px: horizontal tab bar above the list. */
+.tabs {
+  margin: 0 calc(var(--mantine-spacing-md) * -1) var(--mantine-spacing-md);
+  padding: 0 var(--mantine-spacing-md);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-cream-300);
+  scrollbar-width: none;
+}
+
+.tabs .list {
+  flex-direction: row;
+  gap: 4px;
+}
+
+.tabs .item {
+  flex-direction: column;
+  gap: 2px;
+  min-width: 84px;
+  padding: 8px 10px;
+  border-radius: 0;
+  border-bottom: 3px solid transparent;
+  color: var(--color-text);
+  text-align: center;
+  align-items: center;
+}
+
+.tabs .item:hover {
+  background: var(--color-cream-100);
+}
+
+.tabs .item[aria-current='page'] {
+  background: transparent;
+  border-bottom-color: var(--color-green-700);
+  color: var(--color-green-900);
+}
+
+.tabs .count {
+  color: var(--color-green-700);
+}
+
+.tabs .countNone {
+  color: var(--color-muted);
+}

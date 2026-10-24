@@ -1,0 +1,115 @@
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--color-cream-300);
+  list-style: none;
+}
+
+.row:first-child {
+  border-top: none;
+}
+
+.row:hover {
+  background: var(--color-cream-100);
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  animation: score-flash 1.5s ease-out forwards;
+}
+
+@keyframes score-flash {
+  from {
+    background: var(--color-green-200);
+  }
+  to {
+    background: transparent;
+  }
+}
+
+.dotCell,
+.teams,
+.status {
+  position: relative;
+  z-index: 1;
+}
+
+.dotCell {
+  display: flex;
+  justify-content: center;
+}
+
+.teams {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.winner {
+  font-weight: 600;
+}
+
+.score {
+  min-width: 2ch;
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sets {
+  display: flex;
+  gap: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.set {
+  min-width: 1.2ch;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.setCurrent {
+  composes: set;
+  color: var(--color-green-700);
+  font-weight: 600;
+}
+
+.status {
+  min-width: 64px;
+  text-align: right;
+  font-size: 0.87rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.statusLive {
+  composes: status;
+  color: var(--color-green-700);
+  font-weight: 600;
+}
+
+.statusAlert {
+  composes: status;
+  color: var(--color-danger);
+}
