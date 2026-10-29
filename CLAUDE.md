@@ -56,3 +56,6 @@ MockProvider (simulated changes every 3–8 s) ─┴→ ScoresProvider → Live
 - TypeScript strict with `noUncheckedIndexedAccess`; unused vars/args must be prefixed `_`.
 - REST quota is the main constraint (100 requests/day free; each snapshot refresh costs 9). Keep live updates on WebSocket and don't add per-request upstream fetches.
 - `server/.env` (git-ignored, copy from `.env.example`) holds `SPORTS_API_KEY`; it must never reach web code.
+
+## Other
+Whenever working on third-party library, you must use official documentation. Try using DocsExplorer subagent for efficient documentation lookup.
