@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import fastifyStatic from '@fastify/static';
 import websocket from '@fastify/websocket';
 import Fastify from 'fastify';
 import { z } from 'zod';
@@ -28,11 +30,25 @@ const ClientMessageSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('ping') }),
 ]);
 
-export async function buildApp(hub: LiveHub, defaultTimeZone = 'Europe/Warsaw') {
+export async function buildApp(
+  hub: LiveHub,
+  defaultTimeZone = 'Europe/Warsaw',
+  staticDir?: string,
+) {
   const app = Fastify({
     logger: { level: process.env.LOG_LEVEL ?? (process.env.VITEST ? 'silent' : 'info') },
   });
   await app.register(websocket);
+
+  // Production: serve the built web app from the same origin, so /api and /ws need no proxy.
+  if (staticDir && existsSync(staticDir)) {
+    await app.register(fastifyStatic, { root: staticDir });
+    app.setNotFoundHandler((req, reply) =>
+      req.method === 'GET' && !req.url.startsWith('/api') && !/\.\w+$/.test(req.url.split('?')[0]!)
+        ? reply.sendFile('index.html')
+        : reply.code(404).send({ error: 'NOT_FOUND' }),
+    );
+  }
 
   app.get('/api/health', async () => hub.health());
 

@@ -1,0 +1,21 @@
+# Render Blueprint: one Node web service serves the API, the WebSocket and the built web app.
+services:
+  - type: web
+    name: live-scores
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start -w server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: HOST
+        value: 0.0.0.0
+      # sportsapipro | mock — without SPORTS_API_KEY the server always runs on the mock.
+      - key: DATA_PROVIDER
+        value: mock
+      - key: SPORTS_API_KEY
+        sync: false
+      - key: SNAPSHOT_REFRESH_MINUTES
+        value: '10'

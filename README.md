@@ -226,3 +226,14 @@ live-update flow in the browser hook with mocked REST and WebSocket.
 - Muted text uses `#5C6B61` (4.9:1 on cream) to meet WCAG AA. The lighter `green-500` (3.8:1)
   is used only for accents, borders and icons, never for body text.
 - Hockey uses Tabler's `IconIceSkating`, because Tabler has no hockey icon.
+
+## Deploy (Render)
+
+GitHub Pages serves static files only, so it cannot run the proxy (REST + WebSocket + hidden API key).
+`render.yaml` defines a single Render web service instead: the build runs `npm ci && npm run build`, and
+the server serves `web/dist` together with `/api` and `/ws` from one origin.
+
+1. Push the repo to GitHub, then in Render choose **New → Blueprint** and pick the repo.
+2. Enter `SPORTS_API_KEY` when prompted (leave empty to run on mock data) and set `DATA_PROVIDER=sportsapipro`
+   to use the real API.
+3. The free plan sleeps after inactivity; the first request then takes a while to wake it.

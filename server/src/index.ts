@@ -21,9 +21,9 @@ const hub = new LiveHub(provider, {
   fallback: mock,
 });
 
-const app = await buildApp(hub, config.defaultTimeZone);
+const app = await buildApp(hub, config.defaultTimeZone, config.staticDir);
 await hub.start();
-await app.listen({ port: config.port, host: '127.0.0.1' });
+await app.listen({ port: config.port, host: config.host });
 app.log.info(`provider: ${hub.providerName}`);
 
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
